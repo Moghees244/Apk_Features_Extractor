@@ -61,14 +61,14 @@ def extract_features(dataframe):
 
             # append list to data frame
             app_data['Name'] = file_name
-            app_data['Class'] = 'M'
+            app_data['Class'] = ''
             dataframe = dataframe._append(app_data, ignore_index=True)
             samples_extracted += 1
 
             # Stats
             print(f"\n-- Features Extracted From {samples_extracted}/{total_samples} Samples. --\n")
             if samples_extracted % 10 == 0:
-                dataframe.to_csv("../Datasets/Malware.csv", index=False)
+                dataframe.to_csv(".csv", index=False)
 
     return dataframe
 
@@ -115,11 +115,11 @@ def extract_api_calls(filename):
 if __name__ == "__main__":
     print("Start Time : ", datetime.now().strftime("%H:%M:%S"))
     # Paths
-    manifest_features_file_path = '../Features/Selected_Manifest_Features.txt'
-    api_calls_file_path = '../Features/Selected_Api_Calls.txt'
+    manifest_features_file_path = ''
+    api_calls_file_path = ''
 
-    apks_path = "/home/blackcat/Work/FYP/Malware_Detection_System/apks/"
-    source_code_path = "/home/blackcat/Work/FYP/Malware_Detection_System/output"
+    apks_path = ""
+    source_code_path = ""
 
     # List of permissions
     manifest_features = get_feature_list(manifest_features_file_path)
@@ -135,7 +135,7 @@ if __name__ == "__main__":
     dataset = extract_features(dataset)
 
     # Saving all features in .csv file
-    dataset.to_csv("../Datasets/Malware.csv", index=False)
+    dataset.to_csv(".csv", index=False)
 
     print("End Time : ", datetime.now().strftime("%H:%M:%S"))
     print("<--- Task Completed Successfully ! -->")
